@@ -9,7 +9,7 @@ eksctl version
 # Create EKS cluster without nodegroup
 echo "Creating EKS cluster without nodegroup..."
 eksctl create cluster \
-  --name khaleel \
+  --name shaik \
   --region us-east-1 \
   --version 1.32 \
   --zones us-east-1a,us-east-1b \
@@ -17,7 +17,7 @@ eksctl create cluster \
 
 # Update kubeconfig to connect kubectl with cluster
 echo "Updating kubeconfig..."
-aws eks --region us-east-1 update-kubeconfig --name khaleel
+aws eks --region us-east-1 update-kubeconfig --name shaik
 
 # Download and install latest kubectl
 echo "Installing kubectl..."
@@ -28,7 +28,7 @@ kubectl version --client
 
 # Associate IAM OIDC provider
 echo "Associating IAM OIDC Provider..."
-eksctl utils associate-iam-oidc-provider --region us-east-1 --cluster khaleel --approve 
+eksctl utils associate-iam-oidc-provider --region us-east-1 --cluster shaik --approve 
 
 # Delete existing nodegroup (if exists)
 echo "Deleting existing nodegroup (if any)..."
@@ -37,7 +37,7 @@ eksctl delete nodegroup --cluster=Kubernetes --region=us-east-1 --name=workernod
 # Create new nodegroup
 echo "Creating nodegroup..."
 eksctl create nodegroup \
-  --cluster=khaleel \
+  --cluster=shaik \
   --region=us-east-1 \
   --name=workernode \
   --node-type t2.small \
